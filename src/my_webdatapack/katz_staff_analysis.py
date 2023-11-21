@@ -1,14 +1,16 @@
 import pandas as pd
 
-class KatzStaffAnalysis(df):
+class KatzStaffAnalysis:
     """
     A class for analyzing staff data from the Katz School.
 
     Attributes:
     df (pandas.DataFrame): A DataFrame containing staff information.
     """
+    def __init__(self, df):
+        self.df = df
 
-    def title_distribution(df):
+    def title_distribution(self):
         """
         Calculate the distribution of staff titles.
 
@@ -18,9 +20,9 @@ class KatzStaffAnalysis(df):
         Returns:
         pandas.Series: A series containing counts of each unique title.
         """
-        return df['title'].value_counts()
+        return self.df['title'].value_counts()
 
-    def email_domain_analysis(df):
+    def email_domain_analysis(self):
         """
         Analyze the distribution of email domains among the staff.
 
@@ -30,10 +32,10 @@ class KatzStaffAnalysis(df):
         Returns:
         pandas.Series: A series containing counts of each unique email domain.
         """
-        df['email_domain'] = df['email'].apply(lambda x: x.split('@')[-1] if '@' in x else None)
-        return df['email_domain'].value_counts()
+        self.df['email_domain'] = self.df['email'].apply(lambda x: x.split('@')[-1] if '@' in x else None)
+        return self.df['email_domain'].value_counts()
 
-    def phone_number_availability(df):
+    def phone_number_availability(self):
         """
         Determine the availability of phone numbers for staff members.
 
@@ -43,10 +45,10 @@ class KatzStaffAnalysis(df):
         Returns:
         pandas.Series: A series indicating the count of staff with and without phone numbers.
         """
-        has_phone = df['phone'].apply(lambda x: 'Yes' if x != 'NA' else 'No')
+        has_phone = self.df['phone'].apply(lambda x: 'Yes' if x != 'NA' else 'No')
         return has_phone.value_counts()
 
-    def office_staff_count(df):
+    def office_staff_count(self):
         """
         Count the number of staff members in each office.
 
@@ -56,4 +58,4 @@ class KatzStaffAnalysis(df):
         Returns:
         pandas.Series: A series containing counts of staff in each office.
         """
-        return df['office'].value_counts()
+        return self.df['office'].value_counts()
