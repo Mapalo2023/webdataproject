@@ -12,21 +12,41 @@ classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Topic :: Software Development :: Libraries :: Python Modules",
-
-[tool.poetry.dependencies]
-python = "^3.8"
-numpy = "^1.21"
-pandas = "^1.3"
-seaborn = "^0.11"
-matplotlib = "^3.4"
-beautifulsoup4 = "^4.9"
-requests = "^2.25"
+]
+requires-python = ">=3.8"
+dependencies = [
+    "numpy>=1.21",
+    "pandas>=1.3",
+    "seaborn>=0.11",
+    "matplotlib>=3.4",
+    "beautifulsoup4>=4.9",
+    "requests>=2.25",
+]
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
+pre-commit = "^2.0"
+pytest-cov = "^3.0"
+pytest-mock = "^3.6"
+pytest-randomly = "^3.10"
+
+[tool.poetry.optional-dependencies]
+docs = [
+    "sphinx>=4.0.0",
+    "sphinx-autodoc-typehints>=1.12.0"
+]
+
+[tool.poetry.scripts]
+webdata-cli = "webdataproject.cli:main"
+
+[tool.poetry.urls]
+"Homepage" = "https://github.com/Mapalo2023/webdataproject"
+"Bug Tracker" = "https://github.com/Mapalo2023/webdataproject/issues"
+"Source" = "https://github.com/Mapalo2023/webdataproject"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -37,3 +57,26 @@ where = ["src"]
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.setuptools.dynamic]
+version = {attr = "webdataproject.__version__"}
+
+# Configuration for pre-commit hooks
+[tool.codespell]
+ignore-words-list = ["recuse"]
+ignore-regex = 'https://([\w/\.])+'
+
+[tool.pytest.ini_options]
+addopts = [
+    "-ra",
+    "-v",
+    "--tb=short",
+    "--cov=webdataproject",
+    "--no-cov-on-fail",
+]
+testpaths = ["tests"]
+markers = [
+    "web_scraping: Run tests related to web scraping features.",
+    "data_processing: Run tests on data processing.",
+    "cli: Run tests involving the CLI."
+]
