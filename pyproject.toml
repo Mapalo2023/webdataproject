@@ -1,6 +1,6 @@
 
 [tool.poetry]
-name = "webdataproject"
+name = "my_webdatapack"
 version = "0.1.0"
 description = "A Python package for web scraping and data analysis."
 authors = ["Mapalo Lukashi <mlukashi@mail.yu.edu>"]
