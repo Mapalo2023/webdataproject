@@ -20,6 +20,9 @@ requests = "^2.25"
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
 
+[tool.poetry.scripts]
+my-webdatapack = "my_webdatapack.main:main"
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
